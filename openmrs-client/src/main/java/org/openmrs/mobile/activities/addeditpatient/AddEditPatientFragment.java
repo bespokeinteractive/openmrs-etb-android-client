@@ -652,6 +652,8 @@ public class AddEditPatientFragment extends ACBaseFragment<AddEditPatientContrac
             }
         });
 
+
+
         patientImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

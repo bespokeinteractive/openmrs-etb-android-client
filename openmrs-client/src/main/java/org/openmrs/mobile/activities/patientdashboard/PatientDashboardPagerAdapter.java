@@ -22,6 +22,8 @@ import android.view.ViewGroup;
 
 import org.openmrs.mobile.activities.patientdashboard.charts.PatientChartsFragment;
 import org.openmrs.mobile.activities.patientdashboard.charts.PatientDashboardChartsPresenter;
+import org.openmrs.mobile.activities.patientdashboard.contacts.ContactPatientDetailsFragment;
+import org.openmrs.mobile.activities.patientdashboard.contacts.ContactPatientDetailsPresenter;
 import org.openmrs.mobile.activities.patientdashboard.details.PatientDashboardDetailsPresenter;
 import org.openmrs.mobile.activities.patientdashboard.details.PatientDetailsFragment;
 import org.openmrs.mobile.activities.patientdashboard.diagnosis.PatientDashboardDiagnosisPresenter;
@@ -33,13 +35,14 @@ import org.openmrs.mobile.activities.patientdashboard.vitals.PatientVitalsFragme
 
 class PatientDashboardPagerAdapter extends FragmentPagerAdapter {
 
-    private static final int TAB_COUNT = 5;
+    private static final int TAB_COUNT = 6;
 
     private static final int DETAILS_TAB_POS = 0;
     private static final int DIAGNOSIS_TAB_POS = 1;
     private static final int VISITS_TAB_POS = 2;
     private static final int VITALS_TAB_POS = 3;
     private static final int CHARTS_TAB_POS = 4;
+    private static final int ADD_CONTACTS_POS = 5;
 
     private SparseArray<Fragment> registeredFragments = new SparseArray<>();
 
@@ -73,6 +76,10 @@ class PatientDashboardPagerAdapter extends FragmentPagerAdapter {
                 PatientChartsFragment patientChartsFragment = PatientChartsFragment.newInstance();
                 new PatientDashboardChartsPresenter(mPatientId, patientChartsFragment);
                 return patientChartsFragment;
+            case ADD_CONTACTS_POS:
+                ContactPatientDetailsFragment  contactPatientDetailsFragment = ContactPatientDetailsFragment .newInstance();
+                new PatientDashboardDetailsPresenter(mPatientId, contactPatientDetailsFragment);
+                return contactPatientDetailsFragment;
             default:
                 return null;
         }

@@ -26,6 +26,8 @@ import org.openmrs.mobile.R;
 import org.openmrs.mobile.activities.ACBaseActivity;
 import org.openmrs.mobile.activities.patientdashboard.charts.PatientChartsFragment;
 import org.openmrs.mobile.activities.patientdashboard.charts.PatientDashboardChartsPresenter;
+import org.openmrs.mobile.activities.patientdashboard.contacts.ContactPatientDetailsFragment;
+import org.openmrs.mobile.activities.patientdashboard.contacts.ContactPatientDetailsPresenter;
 import org.openmrs.mobile.activities.patientdashboard.details.PatientDashboardDetailsPresenter;
 import org.openmrs.mobile.activities.patientdashboard.details.PatientDetailsFragment;
 import org.openmrs.mobile.activities.patientdashboard.diagnosis.PatientDashboardDiagnosisPresenter;
@@ -114,6 +116,7 @@ public class PatientDashboardActivity extends ACBaseActivity {
         tabNames.add(getString(R.string.patient_scroll_tab_visits_label));
         tabNames.add(getString(R.string.patient_scroll_tab_vitals_label));
         tabNames.add(getString(R.string.patient_scroll_tab_charts_label));
+        tabNames.add("Contacts");
         return tabNames;
     }
 
@@ -134,6 +137,9 @@ public class PatientDashboardActivity extends ACBaseActivity {
         }
         else if (fragment instanceof PatientChartsFragment){
             mPresenter = new PatientDashboardChartsPresenter(id,((PatientChartsFragment) fragment));
+        }
+        else if (fragment instanceof ContactPatientDetailsFragment){
+            mPresenter = new ContactPatientDetailsPresenter(id,((ContactPatientDetailsFragment) fragment));
         }
     }
 

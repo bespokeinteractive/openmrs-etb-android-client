@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -38,6 +39,8 @@ import org.openmrs.mobile.activities.ACBaseFragment;
 import org.openmrs.mobile.activities.activevisits.ActiveVisitsActivity;
 import org.openmrs.mobile.activities.addeditpatient.AddEditPatientActivity;
 import org.openmrs.mobile.activities.formentrypatientlist.FormEntryPatientListActivity;
+import org.openmrs.mobile.activities.patientcontacts.AddEditContactActivity;
+import org.openmrs.mobile.activities.patientcontacts.MainActivity;
 import org.openmrs.mobile.activities.syncedpatients.SyncedPatientsActivity;
 import org.openmrs.mobile.utilities.FontsUtil;
 import org.openmrs.mobile.utilities.ImageUtils;
@@ -49,10 +52,15 @@ public class DashboardFragment extends ACBaseFragment<DashboardContract.Presente
     private ImageView mRegistryPatientButton;
     private ImageView mActiveVisitsButton;
     private ImageView mCaptureVitalsButton;
+    private ImageView mRegistryContactsButton;
+
     private RelativeLayout mFindPatientView;
     private RelativeLayout mRegistryPatientView;
     private RelativeLayout mActiveVisitsView;
     private RelativeLayout mCaptureVitalsView;
+    private RelativeLayout mRegistryContactsView;
+
+
 
     private SparseArray<Bitmap> mBitmapCache;
 
@@ -203,6 +211,39 @@ public class DashboardFragment extends ACBaseFragment<DashboardContract.Presente
                 .build();
     }
 
+    private void showOverlayTutorialFive() {
+        Target viewTarget = new ViewTarget(R.id.registryContactsView, this.getActivity());
+        new ShowcaseView.Builder(this.getActivity())
+                .setTarget(viewTarget)
+                .setContentTitle("Register Contact")
+                .setContentText("Click here to register a new Contact")
+                .hideOnTouchOutside()
+                .setStyle(R.style.CustomShowcaseTheme)
+                .setShowcaseEventListener(new OnShowcaseEventListener() {
+                    @Override
+                    public void onShowcaseViewHide(ShowcaseView showcaseView) {
+                        showOverlayTutorialFour();
+                        showcaseView.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+                        //This method is intentionally left blank
+                    }
+
+                    @Override
+                    public void onShowcaseViewShow(ShowcaseView showcaseView) {
+                        //This method is intentionally left blank
+                    }
+
+                    @Override
+                    public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
+                        //This method is intentionally left blank
+                    }
+                })
+                .build();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -221,12 +262,15 @@ public class DashboardFragment extends ACBaseFragment<DashboardContract.Presente
     private void initFragmentFields(View root) {
         mFindPatientButton = (ImageView) root.findViewById(R.id.findPatientButton);
         mRegistryPatientButton = (ImageView) root.findViewById(R.id.registryPatientButton);
+        mRegistryContactsButton = (ImageView) root.findViewById(R.id.registryContactsButton);
+
         mActiveVisitsButton = (ImageView) root.findViewById(R.id.activeVisitsButton);
         mCaptureVitalsButton = (ImageView) root.findViewById(R.id.captureVitalsButton);
         mFindPatientView = (RelativeLayout) root.findViewById(R.id.findPatientView);
         mRegistryPatientView = (RelativeLayout) root.findViewById(R.id.registryPatientView);
         mCaptureVitalsView = (RelativeLayout) root.findViewById(R.id.captureVitalsView);
         mActiveVisitsView = (RelativeLayout) root.findViewById(R.id.activeVisitsView);
+        mRegistryContactsView = (RelativeLayout) root.findViewById(R.id.registryContactsView);
     }
 
     private void setListeners() {
@@ -234,6 +278,7 @@ public class DashboardFragment extends ACBaseFragment<DashboardContract.Presente
         mRegistryPatientView.setOnClickListener(this);
         mFindPatientView.setOnClickListener(this);
         mCaptureVitalsView.setOnClickListener(this);
+        mRegistryContactsView.setOnClickListener(this);
     }
 
     @Override
@@ -252,6 +297,7 @@ public class DashboardFragment extends ACBaseFragment<DashboardContract.Presente
         bindDrawableResource(mRegistryPatientButton, R.drawable.ico_registry);
         bindDrawableResource(mActiveVisitsButton, R.drawable.ico_visits);
         bindDrawableResource(mCaptureVitalsButton, R.drawable.ico_vitals);
+        bindDrawableResource(mRegistryContactsButton, R.drawable.ico_registry);
     }
 
     /**
@@ -316,6 +362,9 @@ public class DashboardFragment extends ACBaseFragment<DashboardContract.Presente
                 break;
             case R.id.activeVisitsView:
                 startNewActivity(ActiveVisitsActivity.class);
+                break;
+            case R.id.registryContactsView:
+                startNewActivity(MainActivity.class);
                 break;
             default:
                 // Do nothing

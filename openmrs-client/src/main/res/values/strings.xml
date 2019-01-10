@@ -177,10 +177,11 @@
     <string name="get_patient_from_database_error">Failed to fetch patient from database</string>
     <string name="action_start_visit">Start visit</string>
     <string name="patient_scroll_tab_details_label">Details</string>
-    <string name="patient_scroll_tab_diagnosis_label">Contact</string>
+    <string name="patient_scroll_tab_diagnosis_label">Diagnosis</string>
     <string name="patient_scroll_tab_visits_label">Visits</string>
     <string name="patient_scroll_tab_vitals_label">Vitals</string>
     <string name="patient_scroll_tab_charts_label">Charts</string>
+    <string name="patient_scroll_tab_contacts_label">Contacts</string>
     <string name="download_started">"Downloading…"</string>
     <string name="action_starting_visit">"Starting Visit"</string>
 
@@ -254,6 +255,8 @@
     <!-- Capture Vitals activity -->
     <string name="action_delete_patient">Delete Patient</string>
     <string name="action_register_patient">Register Patient</string>
+    <string name="action_register_contact">Register Contact</string>
+    <string name="action_open_contact">Open Contact</string>
     <string name="failed_to_open_vitals_form">An error occurred. Invalid or corrupted form file.</string>
     <string name="active_visit_label_capture_vitals">On Visit</string>
 

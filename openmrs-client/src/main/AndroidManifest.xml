@@ -16,6 +16,7 @@
     android:versionCode="1"
     android:versionName="1.0.1">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
@@ -56,6 +57,13 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".activities.patientcontacts.NetworkStateChecker">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+
         <service android:name=".services.ConceptDownloadService" />
 
         <activity
@@ -68,6 +76,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activities.patientcontacts.lists">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".activities.syncedpatients.SyncedPatientsActivity"
             android:configChanges="keyboardHidden|screenSize"
@@ -169,6 +186,32 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.addeditpatient.AddEditPatientActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.patientcontacts.AddEditContactActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/action_register_patient"
+            android:parentActivityName=".activities.patientcontacts.AddEditContactActivity"
+            android:theme="@style/AppTheme">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.patientcontacts.AddEditContactActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.patientcontacts.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/action_register_patient"
+            android:parentActivityName=".activities.patientcontacts.MainActivity"
+            android:theme="@style/AppTheme">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.patientcontacts.MainActivity" />
         </activity>
 
         <service
